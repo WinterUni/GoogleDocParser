@@ -1,0 +1,24 @@
+{
+    "name": "winteruni/google-doc-parser",
+    "description": "Free Google Doc parser PHP Package",
+    "keywords": ["google", "parser", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anatolii Demyanenko",
+            "email": "a.s.demyanenko@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/dom-crawler": "^4.2",
+        "symfony/css-selector": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "WinterUni\\GoogleDoc\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2"
+    }
+}
