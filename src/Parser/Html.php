@@ -92,14 +92,4 @@ class Html implements ContentInterface, CustomStyleInterface
 
         return $matches[1];
     }
-
-//    /**
-//     * @param string $articleBodyString
-//     *
-//     * @return string
-//     */
-//    private function formatImageSrc(string $articleBodyString): string
-//    {
-//        return str_replace('src="images', 'src="/images"', $articleBodyString);
-//    }
 }
