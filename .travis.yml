@@ -5,7 +5,7 @@ php:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=vpNhaL3uZvbBw7NGwPIAO+Q1shOk/TfxF3BK8IpkuDqcixDF3GqwMP3ltlngE8rh9XKTwQD8Wylt6/EUAayI1x+QeiiKOLoHWjlUOcOAfHe/+s3Wdlc4iqEXuparMMzH/IvRpeUsxWchb0v6K3Txj/o3VPLiwPYSWxhktwqq4ULJtaDWLYy5tvrcOXN9NpQgPPxcKzbduHg475B18lieLb+JY4vhWAXTPDBkNNujeVzVnaOsykTaILWwtq8sjNx3kBlfGqf1uGgIg+NBviSFH3Ne3F/cLDoYjdhftFfD3Z0FCiWv5cqy/74Un4W/nDiMKyY/pB/icbEUtdwON7/4uzM8sRD+i2cVyaWb1yqbUZBbEJPaH1hY5+mruheKKvmHZsYOD4Uk8s2UnChEP8o9+EzlCQcwdAw/QdzAMxCzQ63v8wL9EpDArMHzS87KdTvAPKMOpJqtqR3rE5VoovMXqRXAsIcAjHIE2ebDhoqaqUBVgjhgFqqZa1tYcCa/j7LXvCmoT9veXHXlNeL7srPIwV/GPsvFUGiXbgfBD4N1vsDy8xpOYWlVIZ6RPg3vBOYYjQMeW7/FJt7RNnTB/OKkVt6vPEjDD8wZCTk6rFGtp7sxLSaga4f4yuOJJv1/MClD7FkTZfANFE3Gx+eu8vsstDZPw+eBno4t7q0crU7h8Q0=
+    - CC_TEST_REPORTER_ID=5f344c7163301910c7bbfe8282291fad0c7bc03d7a8a345a3d4358d3e9f2e6d3
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
 before_script:
