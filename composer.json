@@ -1,7 +1,7 @@
 {
     "name": "winteruni/google-doc-parser",
     "description": "Free Google Doc parser PHP Package",
-    "keywords": ["google", "parser", "php"],
+    "keywords": ["google", "docs", "parser", "php"],
     "license": "MIT",
     "authors": [
         {
@@ -10,9 +10,9 @@
         }
     ],
     "require": {
-        "symfony/dom-crawler": "^4.1",
-        "symfony/css-selector": "^4.1",
-        "php": "^7.2"
+        "symfony/dom-crawler": "4.1.12",
+        "symfony/css-selector": "4.1.12",
+        "php": "^7.1.3"
     },
     "autoload": {
         "psr-4": {
@@ -20,6 +20,6 @@
         }
     },
     "require-dev": {
-        "symfony/var-dumper": "^4.1"
+        "symfony/var-dumper": "4.1.12"
     }
 }
