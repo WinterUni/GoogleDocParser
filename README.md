@@ -1,4 +1,6 @@
 # GoogleDocParser
+<a href="https://codeclimate.com/github/WinterUni/GoogleDocParser/maintainability"><img src="https://api.codeclimate.com/v1/badges/3977eb82556234122ee6/maintainability" /></a>
+
 Provides parsing of google docs documents for easier content management on PHP based web sites
 
 ## Basic usage example
@@ -23,6 +25,3 @@ echo $title;
 echo $body;
 echo $customStyle;
 ```
-
-## PhpUnit test builds are running on travis.ci
-```https://travis-ci.com/WinterUni/GoogleDocParser```

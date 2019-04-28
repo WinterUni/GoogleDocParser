@@ -20,13 +20,6 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-html" target="./build/log/report" lowUpperBound="35"
-             highLowerBound="70"/>
-        <log type="coverage-clover" target="./build/log/clover.xml"/>
-        <log type="coverage-php" target="./build/log/coverage.serialized"/>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-        <log type="junit" target="./build/log/logfile.xml"/>
-        <log type="testdox-html" target="./build/log/testdox.html"/>
-        <log type="testdox-text" target="./build/log/testdox.txt"/>
+        <log type="coverage-clover" target="./build/logs/clover.xml"/>
     </logging>
 </phpunit>

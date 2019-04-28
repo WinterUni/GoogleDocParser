@@ -3,13 +3,24 @@ language: php
 php:
   - '7.1'
 
-install: composer install --no-interaction --no-suggest
+env:
+  global:
+    - CC_TEST_REPORTER_ID=vpNhaL3uZvbBw7NGwPIAO+Q1shOk/TfxF3BK8IpkuDqcixDF3GqwMP3ltlngE8rh9XKTwQD8Wylt6/EUAayI1x+QeiiKOLoHWjlUOcOAfHe/+s3Wdlc4iqEXuparMMzH/IvRpeUsxWchb0v6K3Txj/o3VPLiwPYSWxhktwqq4ULJtaDWLYy5tvrcOXN9NpQgPPxcKzbduHg475B18lieLb+JY4vhWAXTPDBkNNujeVzVnaOsykTaILWwtq8sjNx3kBlfGqf1uGgIg+NBviSFH3Ne3F/cLDoYjdhftFfD3Z0FCiWv5cqy/74Un4W/nDiMKyY/pB/icbEUtdwON7/4uzM8sRD+i2cVyaWb1yqbUZBbEJPaH1hY5+mruheKKvmHZsYOD4Uk8s2UnChEP8o9+EzlCQcwdAw/QdzAMxCzQ63v8wL9EpDArMHzS87KdTvAPKMOpJqtqR3rE5VoovMXqRXAsIcAjHIE2ebDhoqaqUBVgjhgFqqZa1tYcCa/j7LXvCmoT9veXHXlNeL7srPIwV/GPsvFUGiXbgfBD4N1vsDy8xpOYWlVIZ6RPg3vBOYYjQMeW7/FJt7RNnTB/OKkVt6vPEjDD8wZCTk6rFGtp7sxLSaga4f4yuOJJv1/MClD7FkTZfANFE3Gx+eu8vsstDZPw+eBno4t7q0crU7h8Q0=
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
-script: ./vendor/bin/phpunit --coverage-clover=coverage.xml
+before_script:
+  - composer install --no-interaction --no-suggest
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
-after_script: ./vendor/bin/test-reporter
+script:
+  - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build  -t clover --exit-code $TRAVIS_TEST_RESULT; fi
 
-addons:
-  code_climate:
-    repo_token:
-      secure: "vpNhaL3uZvbBw7NGwPIAO+Q1shOk/TfxF3BK8IpkuDqcixDF3GqwMP3ltlngE8rh9XKTwQD8Wylt6/EUAayI1x+QeiiKOLoHWjlUOcOAfHe/+s3Wdlc4iqEXuparMMzH/IvRpeUsxWchb0v6K3Txj/o3VPLiwPYSWxhktwqq4ULJtaDWLYy5tvrcOXN9NpQgPPxcKzbduHg475B18lieLb+JY4vhWAXTPDBkNNujeVzVnaOsykTaILWwtq8sjNx3kBlfGqf1uGgIg+NBviSFH3Ne3F/cLDoYjdhftFfD3Z0FCiWv5cqy/74Un4W/nDiMKyY/pB/icbEUtdwON7/4uzM8sRD+i2cVyaWb1yqbUZBbEJPaH1hY5+mruheKKvmHZsYOD4Uk8s2UnChEP8o9+EzlCQcwdAw/QdzAMxCzQ63v8wL9EpDArMHzS87KdTvAPKMOpJqtqR3rE5VoovMXqRXAsIcAjHIE2ebDhoqaqUBVgjhgFqqZa1tYcCa/j7LXvCmoT9veXHXlNeL7srPIwV/GPsvFUGiXbgfBD4N1vsDy8xpOYWlVIZ6RPg3vBOYYjQMeW7/FJt7RNnTB/OKkVt6vPEjDD8wZCTk6rFGtp7sxLSaga4f4yuOJJv1/MClD7FkTZfANFE3Gx+eu8vsstDZPw+eBno4t7q0crU7h8Q0="
+#after_script: ./vendor/bin/test-reporter
+
+#addons:
+#  code_climate:
+#    repo_token:
+#      secure: "vpNhaL3uZvbBw7NGwPIAO+Q1shOk/TfxF3BK8IpkuDqcixDF3GqwMP3ltlngE8rh9XKTwQD8Wylt6/EUAayI1x+QeiiKOLoHWjlUOcOAfHe/+s3Wdlc4iqEXuparMMzH/IvRpeUsxWchb0v6K3Txj/o3VPLiwPYSWxhktwqq4ULJtaDWLYy5tvrcOXN9NpQgPPxcKzbduHg475B18lieLb+JY4vhWAXTPDBkNNujeVzVnaOsykTaILWwtq8sjNx3kBlfGqf1uGgIg+NBviSFH3Ne3F/cLDoYjdhftFfD3Z0FCiWv5cqy/74Un4W/nDiMKyY/pB/icbEUtdwON7/4uzM8sRD+i2cVyaWb1yqbUZBbEJPaH1hY5+mruheKKvmHZsYOD4Uk8s2UnChEP8o9+EzlCQcwdAw/QdzAMxCzQ63v8wL9EpDArMHzS87KdTvAPKMOpJqtqR3rE5VoovMXqRXAsIcAjHIE2ebDhoqaqUBVgjhgFqqZa1tYcCa/j7LXvCmoT9veXHXlNeL7srPIwV/GPsvFUGiXbgfBD4N1vsDy8xpOYWlVIZ6RPg3vBOYYjQMeW7/FJt7RNnTB/OKkVt6vPEjDD8wZCTk6rFGtp7sxLSaga4f4yuOJJv1/MClD7FkTZfANFE3Gx+eu8vsstDZPw+eBno4t7q0crU7h8Q0="
