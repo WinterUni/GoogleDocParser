@@ -1,4 +1,4 @@
-# GoogleDocParser
+# GoogleDocScraper
 <a href="https://codeclimate.com/github/WinterUni/GoogleDocParser/maintainability"><img src="https://api.codeclimate.com/v1/badges/3977eb82556234122ee6/maintainability" /></a>
 <a href="https://codeclimate.com/github/WinterUni/GoogleDocParser/test_coverage"><img src="https://api.codeclimate.com/v1/badges/3977eb82556234122ee6/test_coverage" /></a>
 
