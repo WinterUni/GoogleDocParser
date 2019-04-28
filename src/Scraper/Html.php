@@ -1,13 +1,13 @@
 <?php
 
-namespace WinterUni\GoogleDoc\Parser;
+namespace WinterUni\GoogleDoc\Scraper;
 
 use Symfony\Component\DomCrawler\Crawler;
 use WinterUni\GoogleDoc\Exception\ElementCountException;
 use WinterUni\GoogleDoc\Filter\Body;
 use WinterUni\GoogleDoc\Validator\Html as HtmlValidator;
 
-class Html implements ContentInterface, CustomStyleInterface
+class Html implements ContentInterface
 {
     /** @var HtmlValidator */
     private $validator;

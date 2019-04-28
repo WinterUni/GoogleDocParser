@@ -2,10 +2,14 @@
 
 namespace WinterUni\GoogleDoc;
 
-use WinterUni\GoogleDoc\Parser\ContentInterface;
-use WinterUni\GoogleDoc\Parser\CustomStyleInterface;
+use WinterUni\GoogleDoc\Scraper\ContentInterface;
 
-class DocData
+/**
+ * Class Document
+ *
+ * @package WinterUni\GoogleDoc
+ */
+class Document
 {
     /** @var string */
     private $docContent;
@@ -46,10 +50,6 @@ class DocData
      */
     public function getCustomStyle(): string
     {
-        if ($this->contentParser instanceof CustomStyleInterface) {
-            return $this->contentParser->getCustomStyle($this->docContent);
-        }
-
-        return '';
+        return $this->contentParser->getCustomStyle($this->docContent);
     }
 }

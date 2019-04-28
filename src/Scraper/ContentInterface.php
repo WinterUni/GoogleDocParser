@@ -1,6 +1,6 @@
 <?php
 
-namespace WinterUni\GoogleDoc\Parser;
+namespace WinterUni\GoogleDoc\Scraper;
 
 interface ContentInterface
 {
@@ -17,4 +17,11 @@ interface ContentInterface
      * @return string
      */
     public function getTitle(string $payload): string;
+
+    /**
+     * @param string $payload
+     *
+     * @return string
+     */
+    public function getCustomStyle(string $payload): string;
 }

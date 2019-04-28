@@ -5,13 +5,13 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use WinterUni\GoogleDoc\Exception\ElementCountException;
 use WinterUni\GoogleDoc\Filter\Body as BodyFilter;
-use WinterUni\GoogleDoc\Parser\Html as HtmlParser;
+use WinterUni\GoogleDoc\Scraper\Html as HtmlScraper;
 use WinterUni\GoogleDoc\Validator\Html as HtmlValidator;
 
-class HtmlParserTest extends TestCase
+class HtmlScraperTest extends TestCase
 {
-    /** @var HtmlParser */
-    private $htmlParser;
+    /** @var HtmlScraper */
+    private $htmlScraper;
 
     /**
      * @return array
@@ -65,7 +65,7 @@ class HtmlParserTest extends TestCase
     {
         parent::setUp();
 
-        $this->htmlParser = new HtmlParser(new HtmlValidator(), new BodyFilter());
+        $this->htmlScraper = new HtmlScraper(new HtmlValidator(), new BodyFilter());
     }
 
     /**
@@ -75,7 +75,7 @@ class HtmlParserTest extends TestCase
      */
     public function testGetBodyReturnEmptyStringIfNoBody(string $payload): void
     {
-        $body = $this->htmlParser->getBody($payload);
+        $body = $this->htmlScraper->getBody($payload);
 
         $this->assertSame('', $body);
     }
@@ -87,7 +87,7 @@ class HtmlParserTest extends TestCase
      */
     public function testGetBodyReturnBodyWithoutH1(string $payload): void
     {
-        $body = $this->htmlParser->getBody($payload);
+        $body = $this->htmlScraper->getBody($payload);
 
         $this->assertNotEquals('', $body);
         $this->assertNotContains('h1', $body);
@@ -100,7 +100,7 @@ class HtmlParserTest extends TestCase
      */
     public function testGetBodyReturnBodyWithH1(string $payload): void
     {
-        $body = $this->htmlParser->getBody($payload, false);
+        $body = $this->htmlScraper->getBody($payload, false);
 
         $this->assertNotEquals('', $body);
         $this->assertContains('h1', $body);
@@ -115,7 +115,7 @@ class HtmlParserTest extends TestCase
      */
     public function testGetTitleReturnEmptyStringIfNoTitle(string $payload): void
     {
-        $title = $this->htmlParser->getTitle($payload);
+        $title = $this->htmlScraper->getTitle($payload);
 
         $this->assertEquals('', $title);
     }
@@ -129,7 +129,7 @@ class HtmlParserTest extends TestCase
      */
     public function testGetTitleReturnTitle(string $payload): void
     {
-        $title = $this->htmlParser->getTitle($payload);
+        $title = $this->htmlScraper->getTitle($payload);
 
         $this->assertEquals('Техника стрижки лесенкой видео', $title);
     }
@@ -145,7 +145,7 @@ class HtmlParserTest extends TestCase
     {
         $this->expectException(ElementCountException::class);
 
-        $this->htmlParser->getTitle($payload, 'h2');
+        $this->htmlScraper->getTitle($payload, 'h2');
     }
 
     /**
@@ -155,7 +155,7 @@ class HtmlParserTest extends TestCase
      */
     public function testGetCustomStyleReturnStyleString($payload): void
     {
-        $customStyle = $this->htmlParser->getCustomStyle($payload);
+        $customStyle = $this->htmlScraper->getCustomStyle($payload);
 
         $this->assertNotEquals('', $customStyle);
     }
@@ -167,7 +167,7 @@ class HtmlParserTest extends TestCase
      */
     public function testGetCustomStyleReturnEmptyString($payload): void
     {
-        $customStyle = $this->htmlParser->getCustomStyle($payload);
+        $customStyle = $this->htmlScraper->getCustomStyle($payload);
 
         $this->assertEquals('', $customStyle);
     }
