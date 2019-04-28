@@ -1,7 +1,7 @@
 {
-    "name": "winteruni/google-doc-parser",
-    "description": "Free Google Doc parser PHP Package",
-    "keywords": ["google", "docs", "parser", "php"],
+    "name": "winteruni/google-doc-scraper",
+    "description": "Free Google Doc scraper PHP Package",
+    "keywords": ["google", "docs", "scraper", "parser", "php"],
     "license": "MIT",
     "authors": [
         {
