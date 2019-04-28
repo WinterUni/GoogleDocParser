@@ -23,3 +23,6 @@ echo $title;
 echo $body;
 echo $customStyle;
 ```
+
+## PhpUnit test builds are running on travis.ci
+```https://travis-ci.com/WinterUni/GoogleDocParser```

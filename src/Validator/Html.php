@@ -4,27 +4,31 @@ namespace WinterUni\GoogleDoc\Validator;
 
 use WinterUni\GoogleDoc\Exception\ElementCountException;
 
+/**
+ * Class Html
+ *
+ * @package WinterUni\GoogleDoc\Validator
+ */
 class Html
 {
+    private const MESSAGE = 'There should be only %d %s element! Check your content!';
+
     /**
-     * @param array $elementList
+     * @param array  $elementList
      * @param string $element
-     * @param int $validAmount
+     * @param int    $expectedAmount
      *
      * @return bool
      *
      * @throws ElementCountException
      */
-    public function validateElementsAmount(array $elementList, string $element, int $validAmount = 1): bool
+    public function validateElementsAmount(array $elementList, string $element, int $expectedAmount = 1): bool
     {
-        $exceptionMessage = 'There should be only ' . $validAmount . ' ' . $element . ' element! Check your content!';
+        $message = sprintf(self::MESSAGE, $expectedAmount, $element);
+        $actualAmount = count($elementList);
 
-        if (count($elementList) < $validAmount) {
-            throw new ElementCountException($exceptionMessage);
-        }
-
-        if (count($elementList) > $validAmount) {
-            throw new ElementCountException($exceptionMessage);
+        if ($actualAmount < $expectedAmount || $actualAmount > $expectedAmount) {
+            throw new ElementCountException($message);
         }
 
         return true;
