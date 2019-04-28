@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "symfony/var-dumper": "4.1.12",
-        "phpunit/phpunit": "7.3.3"
+        "phpunit/phpunit": "7.3.3",
+        "codeclimate/php-test-reporter": "^0.4.4"
     }
 }
