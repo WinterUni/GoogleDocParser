@@ -70,6 +70,10 @@ class Html implements ContentInterface, CustomStyleInterface
             $headers[] = $node->text();
         });
 
+        if (empty($headers)) {
+            return '';
+        }
+
         if ($this->validator->validateElementsAmount($headers, $element)) {
             return $headers[0];
         }
