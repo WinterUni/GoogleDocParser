@@ -21,4 +21,9 @@ class HtmlTest extends TestCase
     {
         $this->assertFalse(true);
     }
+
+    public function testTrueTest()
+    {
+        $this->assertTrue(true);
+    }
 }
