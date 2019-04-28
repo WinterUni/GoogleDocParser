@@ -6,6 +6,11 @@ use PHPUnit\Framework\TestCase;
 use WinterUni\GoogleDoc\Exception\ElementCountException;
 use WinterUni\GoogleDoc\Validator\Html;
 
+/**
+ * Class HtmlTest
+ *
+ * @package Tests
+ */
 class HtmlTest extends TestCase
 {
     /** @var Html */

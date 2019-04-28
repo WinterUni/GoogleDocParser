@@ -4,6 +4,11 @@ namespace WinterUni\GoogleDoc\Filter;
 
 use Symfony\Component\DomCrawler\Crawler;
 
+/**
+ * Class Body
+ *
+ * @package WinterUni\GoogleDoc\Filter
+ */
 class Body
 {
     /**
