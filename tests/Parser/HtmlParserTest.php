@@ -135,6 +135,20 @@ class HtmlParserTest extends TestCase
     }
 
     /**
+     * @param string $payload
+     *
+     * @dataProvider withBodyDataProvider
+     *
+     * @throws ElementCountException
+     */
+    public function testGetTitleThrowsElementCountException(string $payload): void
+    {
+        $this->expectException(ElementCountException::class);
+
+        $this->htmlParser->getTitle($payload, 'h2');
+    }
+
+    /**
      * @param $payload
      *
      * @dataProvider withBodyDataProvider

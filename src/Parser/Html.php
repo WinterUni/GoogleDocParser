@@ -47,19 +47,19 @@ class Html implements ContentInterface, CustomStyleInterface
             $body = $this->bodyFilter->removeH1($body);
         }
 
-
         return $body;
     }
 
     /**
      * @param string $payload
      * @param string $element
+     * @param int    $expectedAmount
      *
      * @return string
      *
      * @throws ElementCountException
      */
-    public function getTitle(string $payload, string $element = 'h1'): string
+    public function getTitle(string $payload, string $element = 'h1', $expectedAmount = 1): string
     {
         $headers = [];
 
@@ -74,11 +74,13 @@ class Html implements ContentInterface, CustomStyleInterface
             return '';
         }
 
-        if ($this->validator->validateElementsAmount($headers, $element)) {
-            return $headers[0];
+        if (!$this->validator->isValidElementsAmount($headers, $expectedAmount)) {
+            throw new ElementCountException(
+                'There should be only ' . count($headers) . $element . 'element! Check your content!'
+            );
         }
 
-        return '';
+        return $headers[0];
     }
 
     /**

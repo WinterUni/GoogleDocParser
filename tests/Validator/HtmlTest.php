@@ -3,7 +3,6 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use WinterUni\GoogleDoc\Exception\ElementCountException;
 use WinterUni\GoogleDoc\Validator\Html;
 
 /**
@@ -22,10 +21,10 @@ class HtmlTest extends TestCase
     public function notValidElementsAmount(): array
     {
         return [
-            [[1, 2], 'test_element', 1],
-            [[], 'test_element', 1],
-            [[1], 'test_element', 2],
-            [[1, 2, 3], 'test_element'],
+            [[1, 2], 1],
+            [[], 1],
+            [[1], 2],
+            [[1, 2, 3]],
         ];
     }
 
@@ -35,10 +34,10 @@ class HtmlTest extends TestCase
     public function validElementsAmount(): array
     {
         return [
-            [[1, 2], 'test_element', 2],
-            [[], 'test_element', 0],
-            [[1], 'test_element', 1],
-            [[1], 'test_element'],
+            [[1, 2], 2],
+            [[], 0],
+            [[1], 1],
+            [[1]],
         ];
     }
 
@@ -51,38 +50,30 @@ class HtmlTest extends TestCase
 
     /**
      * @param array $elementList
-     * @param string $element
      * @param int $expectedAmount
      *
      * @dataProvider notValidElementsAmount
-     *
-     * @throws ElementCountException
      */
-    public function testValidateElementsAmountThrowsExceptionIfElementsAmountInvalid(
+    public function testValidateElementsAmountReturnFalse(
         array $elementList,
-        string $element,
         int $expectedAmount = 1
     ): void {
-        $this->expectException(ElementCountException::class);
+        $validationResult = $this->htmlValidator->isValidElementsAmount($elementList, $expectedAmount);
 
-        $this->htmlValidator->validateElementsAmount($elementList, $element, $expectedAmount);
+        $this->assertFalse($validationResult);
     }
 
     /**
      * @param array $elementList
-     * @param string $element
      * @param int $expectedAmount
      *
      * @dataProvider validElementsAmount
-     *
-     * @throws ElementCountException
      */
-    public function testValidateElementsAmountReturnTrueIfElementsAmountIsValid(
+    public function testValidateElementsAmountReturnTrue(
         array $elementList,
-        string $element,
         int $expectedAmount = 1
     ): void {
-        $validationResult = $this->htmlValidator->validateElementsAmount($elementList, $element, $expectedAmount);
+        $validationResult = $this->htmlValidator->isValidElementsAmount($elementList, $expectedAmount);
 
         $this->assertTrue($validationResult);
     }
