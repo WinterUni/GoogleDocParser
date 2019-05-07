@@ -2,6 +2,11 @@
 
 namespace WinterUni\GoogleDoc\Scraper;
 
+/**
+ * Interface ContentInterface
+ *
+ * @package WinterUni\GoogleDoc\Scraper
+ */
 interface ContentInterface
 {
     /**

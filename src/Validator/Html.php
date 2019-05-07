@@ -17,8 +17,6 @@ class Html
      */
     public function isValidElementsAmount(array $elementList, int $expectedAmount = 1): bool
     {
-        $actualAmount = count($elementList);
-
-        return !($actualAmount < $expectedAmount || $actualAmount > $expectedAmount);
+        return count($elementList) === $expectedAmount;
     }
 }

@@ -7,6 +7,11 @@ use WinterUni\GoogleDoc\Exception\ElementCountException;
 use WinterUni\GoogleDoc\Filter\Body;
 use WinterUni\GoogleDoc\Validator\Html as HtmlValidator;
 
+/**
+ * Class Html
+ *
+ * @package WinterUni\GoogleDoc\Scraper
+ */
 class Html implements ContentInterface
 {
     /** @var HtmlValidator */
